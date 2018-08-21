@@ -6,26 +6,26 @@ export const UPDATE_LANE = 'UPDATE_LANE';
 export const DELETE_LANE = 'DELETE_LANE';
 
 export function createLane(lane) {
-    return {
-        type: CREATE_LANE,
-        lane: {
-            id: uuid(),
-            notes: [],
-            ...lane,
-        }
-    };
+  return {
+    type: CREATE_LANE,
+    lane: {
+      id: uuid(),
+      notes: [],
+      ...lane,
+    },
+  };
 }
 
 export function updateLane(lane) {
-    return {
-        type: UPDATE_LANE,
-        lane,
-    };
+  return {
+    type: UPDATE_LANE,
+    lane,
+  };
 }
 
 export function deleteLane(laneId) {
-    return {
-        type: DELETE_LANE,
-        laneId
-    };
+  return {
+    type: DELETE_LANE,
+    laneId,
+  };
 }
