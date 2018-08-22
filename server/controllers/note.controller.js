@@ -35,11 +35,22 @@ export function deleteNote(req, res) {
       res.status(500).send(err);
     }
 
-    note.remove(() => {
-      res.status(200).end();
+    Lane.findOne({ id: req.body.laneId }, (err, lane) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+
+      lane.notes = lane.notes.filter(item => item.id !== note.id);
+
+      lane.save(() => {
+        note.remove(() => {
+          res.status(200).end();
+        });
+      });
     });
   });
 }
+
 
 export function editNote(req, res) {
   Note.findOne({ id: req.params.noteId }).exec((err, note) => {
